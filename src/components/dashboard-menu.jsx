@@ -1,27 +1,55 @@
 "use client";
 import Link from "next/link";
-import React, { use } from "react";
+import React from "react";
+import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import menuItems from "@/helpers/data/dashboard-menu.json";
+import { TfiShoppingCart } from "react-icons/tfi"
+import { usePathname } from "next/navigation";
 
-const DashboardMenu = () => {
-  return (
-    <div>
-     
-      <ul>
-        <li>
-          <Link href="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link href="/dashboard/products">Products</Link>
-        </li>
-        <li>
-          <Link href="/dashboard/profile">Profile</Link>
-        </li>
-        <li>
-          <Link href="/dashboard/logout">Logout</Link>
-        </li>
-      </ul>
-    </div>
-  );
+ const DashboardMenu = () => {
+
+	const pathname = usePathname();
+	
+
+
+	return (
+		<Navbar expand="lg" className="bg-info mb-3">
+			<Container fluid>
+				<Navbar.Brand href="#">Dashboard</Navbar.Brand>
+				<Navbar.Toggle aria-controls="dashboard-menu" />
+				<Navbar.Offcanvas
+					id="dashboard-menu"
+					aria-labelledby="dashboard-menu-label"
+					placement="end"
+				>
+					<Offcanvas.Header closeButton>
+						<Offcanvas.Title id="dashboard-menu-label">
+							Dashboard
+						</Offcanvas.Title>
+					</Offcanvas.Header>
+					<Offcanvas.Body>
+						<Nav className="justify-content-end flex-grow-1 pe-3">
+							{menuItems.map((item) => (
+								<Nav.Link
+									href={item.url}
+									prefetch={item.prefetch}
+									key={item.id}
+									as={Link}
+								>
+									{item.title}
+								</Nav.Link>
+							))}
+							
+							{pathname.startsWith("/dashboard/products") && <Nav.Link><TfiShoppingCart/></Nav.Link>}
+							
+
+
+						</Nav>
+					</Offcanvas.Body>
+				</Navbar.Offcanvas>
+			</Container>
+		</Navbar>
+	);
 };
 
 export default DashboardMenu;

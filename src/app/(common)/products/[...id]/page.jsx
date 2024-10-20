@@ -1,6 +1,8 @@
 
 
-const Page = ({params}) => {
+const Page = ({params}) => {  
+
+    
     return (
         <div>
             Page : {params.id}

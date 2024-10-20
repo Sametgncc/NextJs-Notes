@@ -7,7 +7,12 @@ import menuItems from "@/helpers/data/main-menu.json";
 
 const Header = () => {
   return (
-    <Navbar expand="lg" className="bg-dark" data-bs-theme="dark" collapseOnSelect>
+    <Navbar
+      expand="lg"
+      className="bg-dark"
+      data-bs-theme="dark"
+      collapseOnSelect
+    >
       <Container>
         <Navbar.Brand href="/" as={Link}>
           Cosmo Shop
@@ -16,7 +21,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {menuItems.map((item) => (
-              <Nav.Link key={item.id} as={Link} href={item.url} passHref>
+              <Nav.Link key={item.id} as={Link} href={item.url} prefetch = {item.prefetch}>
                 {item.title}
               </Nav.Link>
             ))}
