@@ -1,6 +1,8 @@
 "use client";
 
 
+import Image from 'next/image';
+import logo from '../../public/images/landScape.jpg';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { Button } from 'react-bootstrap'
@@ -17,10 +19,14 @@ const Redirect = () => {
         }   
 
         router.push('/dashboard');
+        // raplace ile yaparsak redirect eder. yani geri geldigimizde ana sayfaya doner 
         
     }
   return (
     <div>
+
+      <Image src={logo} alt="logo" />
+
       <Button onClick={handleClick}>Redirect</Button>
     </div>
   )
